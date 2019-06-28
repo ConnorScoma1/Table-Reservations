@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <title>Adding Table</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Restaurant</h1>
+        <h3>Add a Reservation</h3>
+
+        <a href="/"><button class="btn btn-primary">Go Home</button></a>
+        <a href="/all"><button class="btn btn-primary">View Tables</button></a>
+
+        <br />
+
+        <br />
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3><strong>Add Reservation</strong></h3>
+              </div>
+              <div class="card-body">
+                <form method="POST" role="form">
+                  <div class="form-group">
+                    <label for="tableNumber">Table Number</label>
+                    <input type="text" class="form-control" id="tableNumber" />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="tableName">Table Name</label>
+                    <input type="text" class="form-control" id="tableName" />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="tablePhone">Phone</label>
+                    <input type="text" class="form-control" id="tablePhone" />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="tableEmail">Email</label>
+                    <input type="text" class="form-control" id="tableEmail" />
+                  </div>
+                </form>
+                <br />
+                <button type="submit" class="btn btn-primary" id="add-table">
+                  Add Reservation
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="/add">Clear All |</a>
+      <a href="/api/tables">App API |</a>
+      <a href="/all">View Tables</a>
+    </div>
+
+    <script type="text/javascript">
+      $("#add-table").on("click", function(event) {
+        event.preventDefault();
+        var addTable = {
+          tableNumber: $("#tableNumber")
+            .trim()
+            .val(),
+          tableName: $("#tableName")
+            .trim()
+            .val(),
+          tablePhone: $("#tablePhone")
+            .trim()
+            .val(),
+          tableEmail: $("#tableEmail")
+            .trim()
+            .val()
+        };
+
+        $.post("/api/tables", addTable).then(function(data) {
+          console.log("add.html", data);
+          alert("Adding table...");
+        });
+      });
+    </script>
+  </body>
+</html>

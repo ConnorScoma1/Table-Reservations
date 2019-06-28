@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="server.js"></script>
+
+    <title>View All Tables</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Restaurant</h1>
+        <h3>View All Tables</h3>
+
+        <a href="/"><button class="btn btn-primary">Go Home</button></a>
+        <a href="/add"
+          ><button class="btn btn-primary">Add Reservation</button></a
+        >
+
+        <br />
+        <br />
+        <div class="card">
+          <div class="card-header">
+            <h3><strong>Table Information</strong></h3>
+          </div>
+
+
+          <!-- Reservation List -->
+          <div class="card-body" id = "reservation">
+            <!-- <h3>Table Number:  <span id="tableNumber"></span></h3>
+                <h3>Table Name:  <span id="tableName"></span></h3>
+                <h3>Table Phone: <span id="tablePhone"></span></h3>
+                <h3>Table Email:  <span id="tableEmail"></span></h3> -->
+          </div>
+
+          <!-- Waiting List -->
+          <div class="card-header">
+            <h3><strong>Waiting List</strong></h3>
+          </div>
+          <div class="card-body" id = "watining-list">
+                <!-- <h3>Table Number:  <span id="tableNumber"></span></h3>
+                <h3>Table Name:  <span id="tableName"></span></h3>
+                <h3>Table Phone: <span id="tablePhone"></span></h3>
+                <h3>Table Email:  <span id="tableEmail"></span></h3> -->
+          </div>
+
+
+        </div>
+      </div>
+      <a href="/all">Clear All Reservation |</a>
+      <a href="/api/tables">App API |</a>
+      <a href="/all">View Tables</a>
+      <br />
+      <br />
+    </div>
+
+    <script>
+      $.get("/api/tables", function(data) {
+        console.log(data);
+
+    function myFunction(){
+        alert('all data cleared')
+    }
+
+        for (var i = 0; i < data.length; i++) {
+            if(i < 5){
+                $('#reservation').append('<h3>Table Number: ' + data[i].tableNumber + '</h3>')
+                $('#reservation').append('<h3>Table Name: ' + data[i].tableName + '</h3>')
+                $('#reservation').append('<h3>Table Phone: ' + data[i].tablePhone + '</h3>')
+                $('#reservation').append('<h3>Table Email: ' + data[i].tableEmail + '</h3>')
+                $('#reservation').append('<br />' + '<hr />')
+            } else {
+                $('#watining-list').append('<h3>Table Number: ' + data[i].tableNumber + '</h3>')
+                $('#watining-list').append('<h3>Table Name: ' + data[i].tableName + '</h3>')
+                $('#watining-list').append('<h3>Table Phone: ' + data[i].tablePhone + '</h3>')
+                $('#watining-list').append('<h3>Table Email: ' + data[i].tableEmail + '</h3>')
+                $('#watining-list').append('<br />' + '<hr />')
+            }
+        }
+      });
+    </script>
+  </body>
+</html>
