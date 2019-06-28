@@ -12,5 +12,14 @@
   "dependencies": {
     "express": "^4.17.1",
     "path": "^0.12.7"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ConnorScoma1/Table-Reservations.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ConnorScoma1/Table-Reservations/issues"
+  },
+  "homepage": "https://github.com/ConnorScoma1/Table-Reservations#readme"
 }
